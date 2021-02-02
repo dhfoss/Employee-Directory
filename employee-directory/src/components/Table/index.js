@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import api from '../../utils/api';
+import API from '../../utils/api';
 import axios from 'axios';
 
 
@@ -9,12 +9,13 @@ function Table() {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-        axios.get('https://randomuser.me/api/?results=100')
+        API()
         .then(res => {
-            setEmployees(res.data.results);
+            setEmployees(res)
         })
     }, [])
 
+    
       return (
         <div className="container" >
             <table>

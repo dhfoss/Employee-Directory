@@ -1,12 +1,22 @@
-const api = () => {
+import axios from 'axios';
 
-        fetch('https://randomuser.me/api/')
-        .then(res => res.json())
-        .then(data => {
-            return data;
-        })
-}
+const API = () => {
+    return new Promise(resolve => {
+        resolve(
+            axios.get('https://randomuser.me/api/?results=100')
+            .then(res => {
+                return res.data.results
+            })
+        )
+    })
+} 
 
-api();
+export default API;
 
-export default api;
+
+// function API() {
+    // axios.get('https://randomuser.me/api/?results=100')
+    // .then(res => {
+    //     setEmployees(res.data.results);
+    // })
+// }
