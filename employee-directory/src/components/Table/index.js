@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API from '../../utils/api';
-import axios from 'axios';
-
+import getUsers from '../../utils/api';
 
 function Table() {
     // const [error, setError] = useState(null);
@@ -9,13 +7,12 @@ function Table() {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-        API()
+        getUsers()
         .then(res => {
             setEmployees(res)
         })
     }, [])
 
-    
       return (
         <div className="container" >
             <table>

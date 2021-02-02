@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = () => {
+const getUsers = () => {
     return new Promise(resolve => {
         resolve(
             axios.get('https://randomuser.me/api/?results=100')
@@ -11,7 +11,7 @@ const API = () => {
     })
 } 
 
-export default API;
+export default getUsers;
 
 
 // function API() {
