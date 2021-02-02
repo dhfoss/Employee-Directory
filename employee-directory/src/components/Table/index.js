@@ -9,7 +9,7 @@ function Table() {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-        axios.get('https://randomuser.me/api/')
+        axios.get('https://randomuser.me/api/?results=100')
         .then(res => {
             setEmployees(res.data.results);
         })
