@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import getUsers from '../../utils/api';
 import TableRow from '../TableRow';
+import * as order from '../../utils/order'
 
 function Table() {
     // const [error, setError] = useState(null);
@@ -10,21 +11,9 @@ function Table() {
     useEffect(() => {
         getUsers()
         .then(res => {
-            res.sort((a, b) => {
-                const nameA = (a.name.last).toUpperCase();
-                const nameB = (b.name.last).toUpperCase();
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-                });
-
-            setEmployees(res)
+            setEmployees(order.orderByLastName(res));
         })
-    }, [])
+    }, []);
 
     return (
         <div className="container" >
