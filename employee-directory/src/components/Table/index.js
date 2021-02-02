@@ -10,11 +10,23 @@ function Table() {
     useEffect(() => {
         getUsers()
         .then(res => {
+            res.sort((a, b) => {
+                const nameA = (a.name.last).toUpperCase();
+                const nameB = (b.name.last).toUpperCase();
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+                });
+
             setEmployees(res)
         })
     }, [])
 
-      return (
+    return (
         <div className="container" >
             <table>
                 <thead>
@@ -41,45 +53,7 @@ function Table() {
                 </tbody>
             </table>
         </div>  
-
-      );
-    }
+    );
+}
 
 export default Table;
-
-
-
-
-
-
-
-// class Table2 extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             employees: []
-//         };
-//     }
-
-//     componentDidMount() {
-
-//         axios.get('https://randomuser.me/api/')
-//         // .then(res => res.json())
-//         .then(res => console.log(res.data.results[0].name))
-
-
-//     }
-
-//     render() {
-//         // const {employees} = this.state;
-//         // console.log(employees[0].results);
-//         return (
-//             <div>
-
-//             </div>
-//         )
-//     }
-
-// }
-
-
