@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import Table from './components/Table';
 
 const App = () => {
   return (
     <div className="App">
-      Hello
+      <Table />
+
     </div>
   );
 }
