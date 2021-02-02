@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getUsers from '../../utils/api';
+import TableRow from '../TableRow';
 
 function Table() {
     // const [error, setError] = useState(null);
@@ -27,12 +28,14 @@ function Table() {
                 <tbody>
                     {employees.map(employee => {
                         return (
-                            <tr>
-                                <td>{employee.name.first}</td>
-                                <td>{employee.name.last}</td>
-                                <td>{employee.email}</td>
-                                <td>{employee.location.city}, {employee.location.country}</td>
-                            </tr>
+                            <TableRow 
+                            lastName={employee.name.last}
+                            firstName={employee.name.first}
+                            email={employee.email}
+                            city={employee.location.city}
+                            country={employee.location.country}
+                            key={employees.indexOf(employee)}
+                            />
                         )
                     })}
                 </tbody>
