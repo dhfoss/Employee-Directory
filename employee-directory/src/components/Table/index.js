@@ -13,12 +13,14 @@ function Table() {
         .then(res => {
             setEmployees(order.orderByLastName(res));
         })
+        .catch(err => {
+            console.log(err)
+        })
     }, []);
 
-    // useEffect(() => {
-    //     console.log('Render');
-    // }, [employees]);
-
+    useEffect(() => {
+        console.log('Render');
+    }, [employees]);
 
     const orderEmployees = e => {
         const employeeArray = [...employees];
@@ -39,7 +41,6 @@ function Table() {
                 break;
         }
     }
-
 
     return (
         <div className="container" >
