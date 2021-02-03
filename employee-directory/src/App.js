@@ -3,9 +3,8 @@ import Table from './components/Table';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App container mt-3">
       <Table />
-
     </div>
   );
 }

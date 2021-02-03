@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import getUsers from '../../utils/api';
 import TableRow from '../TableRow';
+import Buttons from '../Buttons';
 import * as order from '../../utils/order'
 
 function Table() {
     // const [error, setError] = useState(null);
     // const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState([]);
+    const [lastButtonClicked, setLastButtonClicked] = useState('lastNameButton')
 
     useEffect(() => {
         getUsers()
@@ -20,9 +22,13 @@ function Table() {
 
     useEffect(() => {
         console.log('Render');
-    }, [employees]);
+    }, [lastButtonClicked]);
 
     const orderEmployees = e => {
+        if (e.target.id === lastButtonClicked) {
+            return;
+        }
+        setLastButtonClicked(e.target.id)
         const employeeArray = [...employees];
         switch (e.target.id) {
             case "lastNameButton":
@@ -44,14 +50,7 @@ function Table() {
 
     return (
         <div className="container" >
-
-            <div className="container">
-                <button className="btn btn-primary" id="lastNameButton" onClick={e => orderEmployees(e)}>Sort by Last Name</button>
-                <button className="btn btn-primary" id="emailButton" onClick={e => orderEmployees(e)}>Sort By Email</button>
-                <button className="btn btn-primary" id="cityButton" onClick={e => orderEmployees(e)}>Sort By City</button>
-                <button className="btn btn-primary" id="countryButton" onClick={e => orderEmployees(e)}>Sort By Country</button>
-            </div>
-
+            <Buttons orderEmployees={orderEmployees} />
             <table>
                 <thead>
                     <tr>
