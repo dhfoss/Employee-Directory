@@ -3,7 +3,7 @@ import getUsers from '../../utils/api';
 import TableRow from '../TableRow';
 import Buttons from '../Buttons';
 import SearchBar from '../SearchBar';
-import * as order from '../../utils/order'
+import * as order from '../../utils/order';
 
 
 const Table = () => {
@@ -37,7 +37,7 @@ const Table = () => {
         if (e.target.id === lastButtonClicked) {
             return;
         }
-        setLastButtonClicked(e.target.id)
+        setLastButtonClicked(e.target.id);
         const employeeArray = [...employees];
         switch (e.target.id) {
             case "lastNameButton":
@@ -78,37 +78,36 @@ const Table = () => {
 
     return (
         <div className="container" >
-            <SearchBar sortEmployees={sortEmployees}/>
+            <SearchBar sortEmployees={sortEmployees} />
             <Buttons orderEmployees={orderEmployees} />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Email</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
 
-                    
-                        employees.map(employee => {
-                            return (
-                                <TableRow 
-                                lastName={employee.name.last}
-                                firstName={employee.name.first}
-                                email={employee.email}
-                                city={employee.location.city}
-                                country={employee.location.country}
-                                key={employees.indexOf(employee)}
-                                />
-                            )
-                        })
-                    
-                    }
-                </tbody>
-            </table>
+            {/* Adding classNames for bootstrap here */}
+            <div className="table-responsive">
+                <table className="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Email</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {employees.map((employee, index) => (
+                            <TableRow 
+                            num={index + 1}
+                            lastName={employee.name.last}
+                            firstName={employee.name.first}
+                            email={employee.email}
+                            city={employee.location.city}
+                            country={employee.location.country}
+                            key={index}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>  
     );
 }
