@@ -5,7 +5,6 @@ import Buttons from '../Buttons';
 import SearchBar from '../SearchBar';
 import * as order from '../../utils/order';
 
-
 const Table = () => {
     // const [error, setError] = useState(null);
     // const [isLoaded, setIsLoaded] = useState(false);
@@ -81,7 +80,6 @@ const Table = () => {
             <SearchBar sortEmployees={sortEmployees} />
             <Buttons orderEmployees={orderEmployees} />
 
-            {/* Adding classNames for bootstrap here */}
             <div className="table-responsive">
                 <table className="table table-fixed">
                     <thead>
