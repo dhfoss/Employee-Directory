@@ -2,16 +2,8 @@ import React, { useEffect, useState } from 'react';
 import getUsers from '../../utils/api';
 import TableRow from '../TableRow';
 import Buttons from '../Buttons';
+import SearchBar from '../SearchBar';
 import * as order from '../../utils/order'
-
-
-const SearchBar = ({sortEmployees}) => {
-    return (
-        <div className="container mb-3">
-            <input onChange={e => sortEmployees(e)} type="text"></input>
-        </div>
-    )
-}
 
 
 const Table = () => {
@@ -65,7 +57,7 @@ const Table = () => {
         }
     }
 
-    const sortEmployees = (e) => {
+    const sortEmployees = e => {
          if (!e.target.value) {
             const employeeArray = [...permanentEmployees];
             setEmployees(employeeArray);
@@ -73,10 +65,10 @@ const Table = () => {
             const employeeArray = [...permanentEmployees];
             const query = e.target.value.toLowerCase();
     
-            function filterEmployees(arr, query) {
-                return arr.filter(el => {
+            const filterEmployees = (arr, query) => {
+                return arr.filter(e => {
                     return (
-                        el.name.last.toLowerCase().indexOf(query) !== -1
+                        e.name.last.toLowerCase().indexOf(query) !== -1
                     )
                 }) 
             }
