@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const getUsers = () => {
+
     return new Promise ((resolve, reject) => {
         axios.get('https://randomuser.me/api/?results=100')
         .then(res => {

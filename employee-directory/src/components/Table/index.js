@@ -4,21 +4,38 @@ import TableRow from '../TableRow';
 import Buttons from '../Buttons';
 import * as order from '../../utils/order'
 
-function Table() {
+
+const SearchBar = ({sortEmployees}) => {
+    return (
+        <div className="container mb-3">
+            <input onChange={e => sortEmployees(e)} type="text"></input>
+        </div>
+    )
+}
+
+
+const Table = () => {
     // const [error, setError] = useState(null);
     // const [isLoaded, setIsLoaded] = useState(false);
     const [employees, setEmployees] = useState([]);
-    const [lastButtonClicked, setLastButtonClicked] = useState('lastNameButton')
+    const [lastButtonClicked, setLastButtonClicked] = useState('lastNameButton');
+    const [permanentEmployees, setPermanentEmployees] = useState([]);
 
     useEffect(() => {
         getUsers()
         .then(res => {
             setEmployees(order.orderByLastName(res));
+            setPermanentEmployees(order.orderByLastName(res));
         })
         .catch(err => {
             console.log(err)
         })
     }, []);
+
+    useEffect(() => {
+        console.log(employees)
+    }, [employees])
+
 
     useEffect(() => {
         console.log('Render');
@@ -48,8 +65,28 @@ function Table() {
         }
     }
 
+    const sortEmployees = (e) => {
+         if (!e.target.value) {
+            const employeeArray = [...permanentEmployees];
+            setEmployees(employeeArray);
+        } else {
+            const employeeArray = [...permanentEmployees];
+            const query = e.target.value.toLowerCase();
+    
+            function filterEmployees(arr, query) {
+                return arr.filter(el => {
+                    return (
+                        el.name.last.toLowerCase().indexOf(query) !== -1
+                    )
+                }) 
+            }
+            setEmployees(filterEmployees(employeeArray, query));
+        }
+    }
+
     return (
         <div className="container" >
+            <SearchBar sortEmployees={sortEmployees}/>
             <Buttons orderEmployees={orderEmployees} />
             <table>
                 <thead>
@@ -61,18 +98,23 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map(employee => {
-                        return (
-                            <TableRow 
-                            lastName={employee.name.last}
-                            firstName={employee.name.first}
-                            email={employee.email}
-                            city={employee.location.city}
-                            country={employee.location.country}
-                            key={employees.indexOf(employee)}
-                            />
-                        )
-                    })}
+                    {
+
+                    
+                        employees.map(employee => {
+                            return (
+                                <TableRow 
+                                lastName={employee.name.last}
+                                firstName={employee.name.first}
+                                email={employee.email}
+                                city={employee.location.city}
+                                country={employee.location.country}
+                                key={employees.indexOf(employee)}
+                                />
+                            )
+                        })
+                    
+                    }
                 </tbody>
             </table>
         </div>  
