@@ -1,11 +1,11 @@
 import './App.css';
+import Jumbotron from './components/Jumbotron';
 import Table from './components/Table';
-// import SearchBar from './components/SearchBar';
 
 const App = () => {
   return (
     <div className="App container mt-3">
-      {/* <SearchBar /> */}
+      <Jumbotron />
       <Table />
     </div>
   );

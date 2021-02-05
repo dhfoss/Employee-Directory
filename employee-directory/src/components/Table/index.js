@@ -63,9 +63,9 @@ const Table = () => {
         } else {
             const query = e.target.value.toLowerCase();
             const filterEmployees = (arr, query) => {
-                return arr.filter(e => {
+                return arr.filter(employee => {
                     return (
-                        e.name.last.toLowerCase().indexOf(query) !== -1
+                        employee.name.last.toLowerCase().indexOf(query) !== -1
                     )
                 }) 
             }
