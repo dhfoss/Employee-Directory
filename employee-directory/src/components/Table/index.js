@@ -57,13 +57,11 @@ const Table = () => {
     }
 
     const sortEmployees = e => {
-         if (!e.target.value) {
-            const employeeArray = [...permanentEmployees];
+        const employeeArray = [...permanentEmployees];
+        if (!e.target.value) {
             setEmployees(employeeArray);
         } else {
-            const employeeArray = [...permanentEmployees];
             const query = e.target.value.toLowerCase();
-    
             const filterEmployees = (arr, query) => {
                 return arr.filter(e => {
                     return (
