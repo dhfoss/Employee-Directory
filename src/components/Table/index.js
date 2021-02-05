@@ -4,6 +4,7 @@ import TableRow from '../TableRow';
 import Buttons from '../Buttons';
 import SearchBar from '../SearchBar';
 import * as order from '../../utils/order';
+import './Table.css';
 
 const Table = () => {
     // const [error, setError] = useState(null);
@@ -82,11 +83,11 @@ const Table = () => {
                 <table className="table table-fixed">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Last Name</th>
-                            <th>First Name</th>
-                            <th>Email</th>
-                            <th>Location</th>
+                            <th className="header" scope="col">#</th>
+                            <th className="header" scope="col">Last Name</th>
+                            <th className="header" scope="col">First Name</th>
+                            <th className="header" scope="col">Email</th>
+                            <th className="header" scope="col">Location</th>
                         </tr>
                     </thead>
                     <tbody>
